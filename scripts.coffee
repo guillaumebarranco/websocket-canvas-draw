@@ -1,5 +1,6 @@
 # setup our application with its own namespace 
 App = {}
+url = "http://73c4925c.ngrok.io"
 
 ###
 	Init 
@@ -14,7 +15,7 @@ App.init = ->
 	
 	# set some preferences for our line drawing.
 	App.ctx.fillStyle = "solid" 		
-	App.ctx.strokeStyle = "#ECD018"		
+	App.ctx.strokeStyle = "#000"		
 	App.ctx.lineWidth = 5				
 	App.ctx.lineCap = "round"
 		
@@ -43,16 +44,21 @@ App.init = ->
 	Draw Events
 ###
 $('canvas').live 'drag dragstart dragend', (e) ->
+	totalOffsetX = 0
+	totalOffsetY = 0
+	currentElement = e.currentTarget
 	type = e.handleObj.type
-	offset = $(this).offset()
-	
-	e.offsetX = e.layerX - offset.left
-	e.offsetY = e.layerY - offset.top
-	x = e.offsetX 
-	y = e.offsetY
+	loop
+		totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft
+		totalOffsetY += currentElement.offsetTop - currentElement.scrollTop
+		currentElement = currentElement.offsetParent
+		break if not currentElement?
+	x = e.pageX - totalOffsetX
+	y = e.pageY - totalOffsetY
 	App.draw(x,y,type)
 	App.socket.emit('drawClick', { x : x, y : y, type : type})
 	return
+
 
 
 
