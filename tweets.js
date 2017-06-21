@@ -1,9 +1,25 @@
-var Twit = require('twit');
+let Twit = require('twit');
 
 var config = require('./config.json').twitter;
 
 console.log(config);
 
+
+var express = require('express');
+
+var app = express();
+
+app.get('/', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+
+    getTweets(function(response) {
+	res.end(JSON.stringify(response));
+	});
+});
+
+app.listen(2222);
+
+function getTweets(callback) {
 var T = new Twit({
 	  consumer_key:         config.consumer_key,
 	  consumer_secret:      config.consumer_secret,
@@ -15,10 +31,14 @@ var T = new Twit({
 
 T.get('search/tweets', {
 
-	q: 'banana since:2011-07-11',
+	q: '#CCSPACESFAQ since:2011-07-11',
 	count: 100
 
 }, function(err, data, response) {
 	console.log(data);
+callback(data);
 });
+}
+
+
 
