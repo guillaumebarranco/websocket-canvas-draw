@@ -3,11 +3,13 @@ let Twit = require('twit');
 var config = require('./config.json').twitter;
 
 console.log(config);
-
+var cors = require('cors');
 
 var express = require('express');
 
 var app = express();
+
+app.use(cors());
 
 app.get('/', function(req, res) {
     res.setHeader('Content-Type', 'text/plain');

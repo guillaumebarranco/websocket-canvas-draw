@@ -48,7 +48,7 @@ canvas {
 	position: absolute;
 	left: 350px;
 	top: 50px;
-	border: solid 2px blue;
+	border: solid 2px #021E6D;
 	border-radius: 20px;
 	width: 500px;
 	height: 600px;
@@ -73,7 +73,7 @@ img {
 
 .disablestream {
 	position: relative;
-	top: 140px;
+	top: 40px;
 }
 
 .right ul {
