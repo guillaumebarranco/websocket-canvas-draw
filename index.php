@@ -4,9 +4,10 @@
 
 	if(isset($_GET['page']) && $_GET['page'] === 'annexe') {
 		$page = "annexe";
-	}
+	
 
-	$url = "http://92.222.34.194/websocket-canvas-draw";
+	$baseurl = "http://92.222.34.194";
+	$url = $baseurl."/websocket-canvas-draw";
 
 ?>
 
@@ -78,7 +79,7 @@
 		function getTweets() {
 
 			$.ajax({
-				url: "<?= $url ?>:2222",
+				url: "<?= $baseurl ?>:2222",
 				type: "GET",
 				success: function(response) {
 					response = JSON.parse(response);
