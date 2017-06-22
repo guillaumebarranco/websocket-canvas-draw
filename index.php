@@ -4,7 +4,7 @@
 
 	if(isset($_GET['page']) && $_GET['page'] === 'annexe') {
 		$page = "annexe";
-	
+	}	
 
 	$baseurl = "http://92.222.34.194";
 	$url = $baseurl."/websocket-canvas-draw";
