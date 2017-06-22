@@ -6,7 +6,7 @@
 		$page = "annexe";
 	}
 
-	$url = "http://92.222.34.194/websocket-canvas-draw/";
+	$url = "http://92.222.34.194/websocket-canvas-draw";
 
 ?>
 
