@@ -6,6 +6,8 @@
 		$page = "annexe";
 	}
 
+	$url = "http://92.222.34.194/websocket-canvas-draw/";
+
 ?>
 
 <!DOCTYPE HTML>
@@ -15,12 +17,12 @@
 	<meta name="viewport" content="width=device-width, user-scalable=yes">
 	<title>HTML5 Canvas + Node.JS Socket.io</title>
 
-	<link rel="stylesheet" href="http://localhost/websocket-canvas-draw/style.css" />
+	<link rel="stylesheet" href="<?= $url ?>/style.css" />
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://localhost/websocket-canvas-draw/js/jquery.event.drag-2.0.js"></script>
-	<script src="http://localhost/websocket-canvas-draw/node_modules/socket.io-client/dist/socket.io.js"></script>
-	<script type="text/javascript" src="http://localhost/websocket-canvas-draw/scripts.js"></script>
+	<script type="text/javascript" src="<?= $url ?>/js/jquery.event.drag-2.0.js"></script>
+	<script src="<?= $url ?>/node_modules/socket.io-client/dist/socket.io.js"></script>
+	<script type="text/javascript" src="<?= $url ?>/scripts.js"></script>
 </head>
 
 <body>
