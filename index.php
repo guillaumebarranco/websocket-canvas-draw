@@ -4,9 +4,11 @@
 
 	if(isset($_GET['page']) && $_GET['page'] === 'annexe') {
 		$page = "annexe";
-	}	
+	}
 
-	$baseurl = "http://92.222.34.194";
+	$hashtag = "#CCSPACESFAQ";
+	$baseurl = "http://localhost";
+	// $baseurl = "http://92.222.34.194";
 	$url = $baseurl."/websocket-canvas-draw";
 
 ?>
@@ -15,8 +17,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=yes">
-	<title>HTML5 Canvas + Node.JS Socket.io</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<title>Interactive Board - <?= $page ?></title>
 
 	<link rel="stylesheet" href="<?= $url ?>/style.css" />
 
@@ -50,8 +52,8 @@
 		<section class="right">
 			
 			<p>
-				Vos questions sur le <br />
-				<span class="twoem"><span class="orange">#</span>CCSPACESFAQ</p> 
+				<span class="italic">Vos questions sur le</span> <br />
+				<span class="twoem"><span class="orange2">#</span>CCSPACESFAQ</span>
 			</p>
 
 			<ul>
@@ -92,9 +94,9 @@
 						if(i < 6) {
 
 							var text = response.statuses[i].text;
-							text = text.replace('#CCSPACESFAQ', '');
+							text = text.replace('<?= $hashtag ?>', '');
 
-							$('.right ul').append('<li>'+text+'</li>');
+							$('.right ul').append('<li class="italic">'+text+'</li>');
 						}
 					}
 				}
