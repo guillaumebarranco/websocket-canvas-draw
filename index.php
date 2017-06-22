@@ -15,101 +15,105 @@
 
 <!DOCTYPE HTML>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no">
-	<title>Interactive Board - <?= $page ?></title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<title>Interactive Board - <?= $page ?></title>
+	
+		<!-- <link href="https://www.fontify.me/wf/2857bb5886f50f9bfdef553ab8b41cdc" rel="stylesheet" type="text/css"> -->
+		<link href="https://www.fontify.me/wf/b4de00034106342aa4e5b1e4741cecb9" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" 			href="<?= $url ?>/style.css" />
 
-	<link rel="stylesheet" href="<?= $url ?>/style.css" />
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="<?= $url ?>/js/jquery.event.drag-2.0.js"></script>
-	<script src="<?= $url ?>/node_modules/socket.io-client/dist/socket.io.js"></script>
-	<script type="text/javascript" src="<?= $url ?>/scripts.js"></script>
-</head>
+		<script type="text/javascript" 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" 	src="<?= $url ?>/js/jquery.event.drag-2.0.js"></script>
+		<script 						src="<?= $url ?>/node_modules/socket.io-client/dist/socket.io.js"></script>
+		<script type="text/javascript" 	src="<?= $url ?>/scripts.js"></script>
+	</head>
 
-<body>
-	<div style="width: 1350px; margin: 0 auto;">
+	<body>
+		<div style="width: 1350px; margin: 0 auto;">
 
-		<section class="left">
+			<section class="left">
 
-			<div class="whiteboard">
+				<div class="whiteboard">
 
-				<article><!-- our canvas will be inserted here--></article>
+					<article><!-- our canvas will be inserted here--></article>
 
-			</div>
-
-			<?php if($page === "hublot") { ?>
-
-				<div class="disablestream">
-					<button class="button">Couper la diffusion</button>
 				</div>
-			<?php } ?>
+
+				<?php if($page === "hublot") { ?>
+
+					<div class="disablestream">
+						<button class="button">Couper la diffusion</button>
+					</div>
+				<?php } ?>
 
 
-		</section>
+			</section>
 
-		<section class="right">
-			
-			<p>
-				<span class="italic">Vos questions sur le</span> <br />
-				<span class="twoem"><span class="orange2">#</span>CCSPACESFAQ</span>
-			</p>
+			<section class="right">
+				
+				<p>
+					<span class="italic">Vos questions sur le</span> <br />
+					<span class="twoem"><span class="orange2">#</span>CCSPACESFAQ</span>
+				</p>
 
-			<ul>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-				<li>POST</li>
-			</ul>
+				<ul>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+					<li>POST</li>
+				</ul>
 
-			<img src="img/<?php echo $page; ?>.png" class="logo" width="300" alt="">
+				<img src="img/<?php echo $page; ?>.png" class="logo" width="400" alt="">
 
-		</section>
-	</div>
+			</section>
+		</div>
 
-	<script>
-		function getTweets() {
+		<script>
+			function getTweets() {
 
-			$.ajax({
-				url: "<?= $baseurl ?>:2222",
-				type: "GET",
-				success: function(response) {
-					response = JSON.parse(response);
-					console.log('r', response);
+				$.ajax({
+					url: "<?= $baseurl ?>:2222",
+					type: "GET",
+					success: function(response) {
+						response = JSON.parse(response);
+						console.log('r', response);
 
-					$('.right ul').empty();
-					
-					for(var i in response.statuses) {
+						$('.right ul').empty();
 
-						if(i < 6) {
+						for(var i in response.statuses) {
 
-							var text = response.statuses[i].text;
-							text = text.replace('<?= $hashtag ?>', '');
+							if(i < 6) {
 
-							$('.right ul').append('<li class="italic">'+text+'</li>');
+								var text = response.statuses[i].text;
+								text = text.replace('<?= $hashtag ?>', '');
+
+								$('.right ul').append('<li class="italic">'+text+'</li>');
+							}
 						}
 					}
-				}
-			});
-		}
+				});
+			}
 
-		getTweets();
-
-		setInterval(function() {
 			getTweets();
-		}, 10000);
 
-	</script>
+			setInterval(function() {
+				getTweets();
+			}, 10000);
 
-</body>
+		</script>
 
+	</body>
+
+</html>

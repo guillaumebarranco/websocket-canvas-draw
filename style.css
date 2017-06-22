@@ -3,7 +3,8 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 body {
 	background-color: #f9f9f9;
 	color: #021E6D;
-	font-family: "Arial", sans-serif;
+	font-family: "font128363", "Arial", sans-serif;
+	letter-spacing: 1px;
 }
 
 canvas {
