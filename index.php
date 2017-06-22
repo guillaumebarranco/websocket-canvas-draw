@@ -78,7 +78,7 @@
 		function getTweets() {
 
 			$.ajax({
-				url: "http://localhost:2222",
+				url: "<?= $url ?>:2222",
 				type: "GET",
 				success: function(response) {
 					response = JSON.parse(response);
