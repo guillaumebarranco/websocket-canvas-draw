@@ -5,12 +5,12 @@
 	<meta name="viewport" content="width=device-width, user-scalable=yes">
 	<title>HTML5 Canvas + Node.JS Socket.io</title>
 
-	<link rel="stylesheet" href="http://92.222.34.194/websocket-canvas-draw/style.css" />
+	<link rel="stylesheet" href="http://localhost/websocket-canvas-draw/style.css" />
 
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-	<script type="text/javascript" src="http://92.222.34.194/websocket-canvas-draw/js/jquery.event.drag-2.0.js"></script>
-	<script src="http://92.222.34.194/websocket-canvas-draw/node_modules/socket.io-client/dist/socket.io.js"></script>
-	<script type="text/javascript" src="http://92.222.34.194/websocket-canvas-draw/scripts.js"></script>
+	<script type="text/javascript" src="http://localhost/websocket-canvas-draw/js/jquery.event.drag-2.0.js"></script>
+	<script src="http://localhost/websocket-canvas-draw/node_modules/socket.io-client/dist/socket.io.js"></script>
+	<script type="text/javascript" src="http://localhost/websocket-canvas-draw/scripts.js"></script>
 
 </head>
 <body>
@@ -60,7 +60,7 @@
 	<script>
 		function getTweets() {
 		$.ajax({
-			url: "http://92.222.34.194:2222",
+			url: "http://localhost:2222",
 			type: "GET",
 			success: function(response) {
 				response = JSON.parse(response);
@@ -69,8 +69,13 @@
 				$('.right ul').empty();
 				
 				for(var i in response.statuses) {
+
 					if(i < 6) {
-						$('.right ul').append('<li>'+response.statuses[i].text+'</li>');
+
+						var text = response.statuses[i].text;
+						text = text.replace('#CCSPACESFAQ', '');
+
+						$('.right ul').append('<li>'+text+'</li>');
 					}
 				}
 			}
